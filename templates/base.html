@@ -11,9 +11,21 @@
     />
   </head>
   <body>
+    <nav>
+      <div class="brand">Flask Feedback</div>
+      <ul>
+        {% if session['username'] %}
+        <li class="logout-nav"><a href="/users/{{session.username}}">{{session.username}}</a></li>
+        <li class="logout-nav"><a href="/logout">Log-Out</a></li>
+        {% else %}
+        <li class="register-nav"><a href="/register">Sign-Up</a></li>
+        <li class="login-nav"><a href="/login">Log-In</a></li>
+        {% endif %}
+      </ul>
+    </nav>
     <div class="flash">
-      {% for msg in get_flashed_messages() %} msg {% endfor %}
+      {% for msg in get_flashed_messages() %} {{msg}} {% endfor %}
     </div>
-    {% block content%} {% endblock %}
+    {% block content %} {% endblock %}
   </body>
 </html>
