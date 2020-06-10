@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from app import app
+from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
 
@@ -31,3 +31,13 @@ class User(db.Model):
         user = f"<User ID: {self.id}; Name: {self.first_name} {self.last_name};"
         auth = f" Username: {self.username}; Email: {self.email}>"
         return f"{user} {auth}"
+
+    @classmethod
+    def register(cls, username, pwd):
+        """Register User with hashed password and return user"""
+
+        hashed = bcrypt.generate_password_hash(pwd)
+        #turn hash string into unicode utf8 (normal) string
+        hashed_utf8 = hashed.decode("utf8")
+
+        return cls(username = username, password = hashed_utf8)
