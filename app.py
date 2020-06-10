@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "SECRET"
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-app.config['SQLALCHEMY_DATABE_URI'] = 'postgresql:///flask_feedback'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///flask_feedback'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
