@@ -1,9 +1,16 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<h1>WELCOME! {{user.first_name}} {{user.last_name}}</h1>
+<p>
+  {{user.username}} {{user.email}}
+</p>
+<hr />
+<a href="/users/{{user.username}}/feedback"><h1>SEND FEEDBACK</h1></a>
 
-{% block content %}
-<h1>You made it!</h1>
-{{user.first_name}}
-{{user.last_name}}
-{{user.username}}
-{{user.email}}
+{% for feedback in user.feedback %}
+<p>TITLE: {{feedback.title}}</p>
+<p>CONTENT: {{feedback.content}}</p>
+{%endfor%}
+<form action="/users/{{user.username}}/delete"">
+    <button>DELETE USER</button>
+</form>
 {% endblock %}

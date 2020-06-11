@@ -12,3 +12,7 @@ class SignUpForm(FlaskForm):
     email = StringField("Email", validators=[InputRequired(), Length(max=50)])
     first_name = StringField("First Name", validators=[InputRequired(), Length(max=30)])
     last_name = StringField("Last Name", validators=[InputRequired(), Length(max=30)])
+
+class FeedbackForm(FlaskForm):
+    title = StringField("Title", validators=[InputRequired(), Length(max=100)])
+    content = StringField("Content", validators=[InputRequired()])
